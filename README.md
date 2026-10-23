@@ -1,106 +1,123 @@
 Personal Expense & Finance Tracker
 
-A personal finance application built with Python to record income and expenses, manage transactions, and track monthly finances through a graphical user interface.
+A desktop application built with Python to manage personal income and expenses, track balances, visualize monthly financial activity, and export transactions to CSV.
 
 Features
 
-- Add income and expenses with categories
-- View the current account balance
-- View transaction history
-- Filter transactions by category
-- Generate monthly income and expense summaries
-- Visualize income versus expenses using a bar chart
-- Interactive graphical user interface built with Tkinter
-- Store transaction records using an SQLite database
+- Dashboard: View total income, total expenses, and current balance.
+- Transaction Management: Add, edit, and delete income and expense transactions.
+- Transaction History: View recorded transactions with details such as type, amount, description, date, and category.
+- Search and Filter: Search transactions and filter them by category or transaction type.
+- Monthly Financial Chart: Visualize income versus expenses using a chart powered by Matplotlib.
+- CSV Export: Export transaction records to a CSV file for use in spreadsheet applications such as Microsoft Excel.
+- SQLite Database: Store transaction data locally.
+- Input Validation: Reject invalid transaction amounts, including zero and negative values.
+- Automated Testing: Test database operations using pytest.
+- Continuous Integration: Automatically run tests through GitHub Actions when changes are pushed or pull requests are opened.
 
 Technologies Used
 
-- Python – Application logic
-- Tkinter – Graphical user interface
-- SQLite – Database management
-- Matplotlib – Data visualization
-- Git and GitHub – Version control and project hosting
-
-Getting Started
-
-Prerequisites
-
-- Python 3 installed on your computer
-- pip package manager
-
-Installation
-
-1. Clone this repository:
-   
-   git clone https://github.com/Sharonhoney05/personal-expense-finance-tracker.git
-
-2. Navigate to the project directory:
-   
-   cd personal-expense-finance-tracker
-
-3. Install the required dependency:
-   
-   py -m pip install -r requirements.txt
-
-Run the Application
-
-To launch the graphical application:
-
-py gui.py
-
-To run the terminal-based version instead:
-
-py main.py
-
-The SQLite database is initialized by the application when needed.
+- Python
+- Tkinter — graphical user interface
+- SQLite — local database
+- Matplotlib — financial chart visualization
+- CSV — transaction data export
+- pytest — automated testing
+- Git and GitHub — version control and project hosting
+- GitHub Actions — continuous integration
 
 Project Structure
 
-personal-expense-finance-tracker/
-├── main.py
+Personal Finance Tracker/
 ├── gui.py
 ├── database.py
 ├── requirements.txt
 ├── README.md
 ├── .gitignore
-└── screenshots/
-    ├── main-window.png
-    ├── transactions.png
-    └── income-expenses-chart.png
+├── tests/
+│   └── test_database.py
+├── screenshots/
+│   ├── main-window.png
+│   ├── transactions.png
+│   └── income-expenses-chart.png
+└── .github/
+    └── workflows/
+        └── python-tests.yml
 
-The SQLite database file is generated locally and is excluded from version control.
+Installation and Setup
+
+1. Clone the repository
+
+git clone https://github.com/Sharonhoney05/personal-expense-finance-tracker.git
+
+2. Navigate to the project folder
+
+cd personal-expense-finance-tracker
+
+3. Install dependencies
+
+Make sure Python is installed, then run:
+
+py -m pip install -r requirements.txt
+
+4. Run the application
+
+py gui.py
+
+The application uses SQLite to store transactions locally.
+
+Running Automated Tests
+
+Install pytest if it is not already installed:
+
+py -m pip install pytest
+
+Run the tests:
+
+py -m pytest -v
+
+The test suite covers database creation, adding and retrieving transactions, updating and deleting transactions, and rejecting non-positive transaction amounts.
 
 Screenshots
 
-Main Application Window
+Main Dashboard
 
-"Main Finance Tracker Window" (screenshots/main-window.png)
+"Main Dashboard" (screenshots/main-window.png)
 
 Transaction History
 
 "Transaction History" (screenshots/transactions.png)
 
-Income vs. Expenses Chart
+Monthly Income vs Expenses
 
-"Income vs Expenses Chart" (screenshots/income-expenses-chart.png)
+"Income and Expenses Chart" (screenshots/income-expenses-chart.png)
 
-Learning Outcomes
+What I Learned
 
-- Python application development
-- Database operations using SQLite
-- Building graphical interfaces with Tkinter
-- Data visualization using Matplotlib
-- Version control and repository management using Git and GitHub
+- Building a desktop GUI with Python and Tkinter.
+- Connecting a Python application to an SQLite database.
+- Implementing CRUD operations: Create, Read, Update, and Delete.
+- Validating user input and handling errors.
+- Searching, filtering, and categorizing transaction data.
+- Visualizing financial information with Matplotlib.
+- Exporting structured data to CSV.
+- Writing automated database tests with pytest.
+- Using Git and GitHub for version control.
+- Configuring GitHub Actions for continuous integration.
 
 Future Improvements
 
-- Export transactions to CSV
-- Add date-range filtering
-- Introduce budget tracking and spending limits
-- Enhance financial charts and reports
+- Add date-range filtering and more detailed financial reports.
+- Add monthly budgets and savings goals.
+- Improve the dashboard with additional financial visualizations.
+- Add optional transaction import from CSV.
 
 Author
 
 F K Sharon
 
 GitHub: "Sharonhoney05" (https://github.com/Sharonhoney05)
+
+---
+
+This project was developed as a hands-on learning project to strengthen Python programming, database management, testing, and software development skills.
