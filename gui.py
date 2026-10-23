@@ -1,6 +1,6 @@
 import tkinter as tk
-from tkinter import messagebox, ttk
-from database import create_database, add_transaction, get_transactions, delete_transaction, update_transaction
+from tkinter import messagebox, ttk, filedialog
+from database import create_database, add_transaction, get_transactions, delete_transaction, update_transaction, export_transactions_to_csv
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
@@ -684,6 +684,25 @@ def edit_selected_transaction():
         command=save_changes
     ).pack(pady=15)
 
+def export_csv():
+    filename = filedialog.asksaveasfilename(
+        defaultextension=".csv",
+        filetypes=[("CSV files", "*.csv")],
+        title="Export Transactions"
+    )
+
+    if not filename:
+        return
+
+    try:
+        export_transactions_to_csv(filename)
+        messagebox.showinfo(
+            "Export Successful",
+            "Transactions exported successfully!"
+        )
+    except Exception as error:
+        messagebox.showerror("Export Failed", str(error))
+
 # Frame for transaction action buttons
 action_frame = tk.Frame(content_frame, bg="#F3F6FB")
 action_frame.pack(fill="x", pady=10)
@@ -701,6 +720,13 @@ edit_button = ttk.Button(
     command=edit_selected_transaction
 )
 edit_button.pack(side="left", padx=10, expand=True)
+
+export_button = ttk.Button(
+    action_frame,
+    text="Export CSV",
+    command=export_csv
+)
+export_button.pack(side="left", padx=10, expand=True)
 # Load actual totals when the app opens
 refresh_dashboard()
 

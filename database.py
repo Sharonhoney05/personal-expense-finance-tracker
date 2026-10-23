@@ -1,5 +1,6 @@
 import sqlite3
 from datetime import datetime
+import csv
 
 
 def create_database():
@@ -110,6 +111,23 @@ def update_transaction(transaction_id, transaction_type, amount, description, ca
 
     connection.commit()
     connection.close()
+    
+def export_transactions_to_csv(filename):
+    transactions = get_transactions()
+
+    with open(filename, "w", newline="", encoding="utf-8-sig") as file:
+        writer = csv.writer(file)
+
+        writer.writerow([
+            "ID",
+            "Type",
+            "Amount",
+            "Description",
+            "Date",
+            "Category"
+        ])
+
+        writer.writerows(transactions)
 
 if __name__ == "__main__":
     create_database()
