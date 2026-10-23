@@ -43,25 +43,31 @@ def create_database():
 
 
 def add_transaction(transaction_type, amount, description="", category="Other"):
-    connection = sqlite3.connect("finance.db")
-    cursor = connection.cursor()
-
     transaction_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    cursor.execute("""
-        INSERT INTO transactions
-        (transaction_type, amount, description, transaction_date, category)
-        VALUES (?, ?, ?, ?, ?)
-    """, (
-        transaction_type,
-        amount,
-        description,
-        transaction_date,
-        category
-    ))
+    connection = sqlite3.connect("finance.db")
 
-    connection.commit()
-    connection.close()
+    try:
+        connection.execute("""
+            INSERT INTO transactions
+            (transaction_type, amount, description, transaction_date, category)
+            VALUES (?, ?, ?, ?, ?)
+        """, (
+            transaction_type,
+            amount,
+            description,
+            transaction_date,
+            category
+        ))
+
+        connection.commit()
+
+    except Exception:
+        connection.rollback()
+        raise
+
+    finally:
+        connection.close()
 
 
 def get_transactions():
